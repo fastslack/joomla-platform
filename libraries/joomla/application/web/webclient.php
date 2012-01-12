@@ -340,7 +340,7 @@ class JWebClient
 		}
 
 		// Mark this detection routine as run.
-		$this->detection['engine'] = true;;
+		$this->detection['engine'] = true;
 	}
 
 	/**
@@ -358,7 +358,7 @@ class JWebClient
 		$this->languages = array_map('trim', (array) explode(',', $acceptLanguage));
 
 		// Mark this detection routine as run.
-		$this->detection['acceptLanguage'] = true;;
+		$this->detection['acceptLanguage'] = true;
 	}
 
 	/**
@@ -426,6 +426,6 @@ class JWebClient
 		}
 
 		// Mark this detection routine as run.
-		$this->detection['platform'] = true;;
+		$this->detection['platform'] = true;
 	}
 }
