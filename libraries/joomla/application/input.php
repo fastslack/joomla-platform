@@ -125,18 +125,22 @@ class JInput
 	 * @param   string  $name     Name of the value to get.
 	 * @param   mixed   $default  Default value to return if variable does not exist.
 	 * @param   string  $filter   Filter to apply to the value.
+	 * @param   bool    $clean    Flag to on/off the data cleanup
 	 *
 	 * @return  mixed  The filtered input value.
 	 *
 	 * @since   11.1
 	 */
-	public function get($name, $default = null, $filter = 'cmd')
+	public function get($name, $default = null, $filter = 'cmd', $clean = true)
 	{
-		if (isset($this->data[$name]))
+		if (isset($this->data[$name]) && $clean === true)
 		{
 			return $this->filter->clean($this->data[$name], $filter);
 		}
-
+		else if (isset($this->data[$name]) && $clean !== true)
+		{
+			return $this->data[$name];
+		}
 		return $default;
 	}
 
