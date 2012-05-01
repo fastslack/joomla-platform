@@ -21,7 +21,7 @@ if (!defined('DS'))
 	define('DS', DIRECTORY_SEPARATOR);
 }
 
-if (!defined('JPATH_ROOT'))
+if (!defined('JPATH_ROOT') && defined('JPATH_SITE'))
 {
 	// Define a string constant for the root directory of the file system in native format
 	define('JPATH_ROOT', JPath::clean(JPATH_SITE));
