@@ -89,7 +89,12 @@ class JTableMenuType extends JTable
 		if ($this->id)
 		{
 			// Get the user id
-			$userId = JFactory::getUser()->id;
+			if ($this->_user instanceof JUser)
+			{
+				$userId = $this->_user->get('id');
+			} else {
+				$userId = 0;
+			}
 
 			// Get the old value of the table
 			$table = JTable::getInstance('Menutype', 'JTable');

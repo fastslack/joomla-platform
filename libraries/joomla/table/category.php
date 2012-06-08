@@ -199,20 +199,23 @@ class JTableCategory extends JTableNested
 	public function store($updateNulls = false)
 	{
 		$date = JFactory::getDate();
-		$user = JFactory::getUser();
 
-		if ($this->id)
+		if ($this->_user instanceof JUser)
 		{
-			// Existing category
-			$this->modified_time = $date->toSql();
-			$this->modified_user_id = $user->get('id');
+			if ($this->id)
+			{
+				// Existing category
+				$this->modified_time = $date->toSql();
+				$this->modified_user_id = $this->_user->get('id');
+			}
+			else
+			{
+				// New category
+				$this->created_time = $date->toSql();
+				$this->created_user_id = $this->_user->get('id');
+			}
 		}
-		else
-		{
-			// New category
-			$this->created_time = $date->toSql();
-			$this->created_user_id = $user->get('id');
-		}
+
 		// Verify that the alias is unique
 		$table = JTable::getInstance('Category', 'JTable', array('dbo' => $this->getDbo()));
 		if ($table->load(array('alias' => $this->alias, 'parent_id' => $this->parent_id, 'extension' => $this->extension))
