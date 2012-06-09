@@ -200,20 +200,17 @@ class JTableCategory extends JTableNested
 	{
 		$date = JFactory::getDate();
 
-		if ($this->_user instanceof JUser)
+		if ($this->id)
 		{
-			if ($this->id)
-			{
-				// Existing category
-				$this->modified_time = $date->toSql();
-				$this->modified_user_id = $this->_user->get('id');
-			}
-			else
-			{
-				// New category
-				$this->created_time = $date->toSql();
-				$this->created_user_id = $this->_user->get('id');
-			}
+			// Existing category
+			$this->modified_time = $date->toSql();
+			$this->modified_user_id = ($this->_user instanceof JUser) ? $this->_user->get('id') : 0;
+		}
+		else
+		{
+			// New category
+			$this->created_time = $date->toSql();
+			$this->created_user_id = ($this->_user instanceof JUser) ? $this->_user->get('id') : 0;
 		}
 
 		// Verify that the alias is unique
