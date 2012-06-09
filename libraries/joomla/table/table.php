@@ -57,6 +57,14 @@ abstract class JTable extends JObject
 	protected $_db;
 
 	/**
+	 * JUser object.
+	 *
+	 * @var    JUser
+	 * @since  12.2
+	 */
+	protected $_user;
+
+	/**
 	 * Should rows be tracked as ACL assets?
 	 *
 	 * @var    boolean
@@ -355,6 +363,27 @@ abstract class JTable extends JObject
 		$this->_db = $db;
 
 		return true;
+	}
+
+	/**
+	 * Method to set the JUser object.
+	 *
+	 * @param   JUser  $user  A JUser object to be used by the table object.
+	 *
+	 * @return  boolean  True on success.
+	 *
+	 * @link    http://docs.joomla.org/JTable/setUser
+	 * @since   12.2
+	 */
+	public function setUser(JUser $user)
+	{
+		if ($user instanceof JUser)
+		{
+			$this->_user = $user;
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
